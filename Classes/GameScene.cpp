@@ -144,7 +144,9 @@ void GameScene::checkCollision()
 	}
 
 	else if (ball->getPositionY() < 0) {
-		init();
+		unschedule(schedule_selector(GameScene::tick));
+		auto newScene = GameScene::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(1, newScene));
 	}
 
 	CCRect box1Rect = ball->boundingBox();
@@ -200,7 +202,9 @@ void GameScene::checkCollision()
 
 	if (woods.size() == 0)
 	{
-		init();
+		unschedule(schedule_selector(GameScene::tick));
+		auto newScene = GameScene::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(1, newScene));
 	}
 }
 
